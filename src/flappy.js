@@ -16,6 +16,7 @@ let bx = canvas.width / 3; // 鳥の横位置
 let by = canvas.height / 2; // 鳥の縦位置
 let moment = 0; // 鳥の慣性
 let score = 0; // スコア
+let highscore = 0; // ハイスコア
 
 const birdSize = 20; // 鳥の大きさ
 // 鳥の画像
@@ -59,7 +60,7 @@ function onInputEvent(e) {
         by = canvas.height / 2;
         moment = 0;
         walls = [];
-        score = 0;
+        score = 0; // ハイスコアは初期化しない
         isPlaying = true;
     }
 }
@@ -117,6 +118,11 @@ function moveWalls() {
             wall.scored = true;
         }
     });
+
+    // ハイスコアを更新していたら現在のスコアで更新
+    if (score > highscore) {
+        highscore = score;
+    }
 }
 
 /**
@@ -293,7 +299,7 @@ function drawScore() {
         ctx.restore();
     };
 
-    drawText(score, "42pt Arial Black", canvas.width / 2, 50);
+    drawText(`SCORE:${score}   HIGH SCORE:${highscore}`, "22pt Arial Black", canvas.width / 2, 50);
     if (!isPlaying) {
         drawText("GAME OVER", "32px Arial Black", canvas.width / 2, canvas.height / 2 - 50);
         drawText("PRESS ANY KEY", "32px Arial Black", canvas.width / 2, canvas.height / 2)
