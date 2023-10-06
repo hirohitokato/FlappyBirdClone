@@ -28,7 +28,7 @@ bird_img.src = bird_dataurl;
 let walls = []; // 画面上に表示されているすべての壁を管理
 let wallDelay = 0; // 次の壁を表示するまでのタイマー
 
-const wallDelayStart = 2.5 * 100; //最初のパイプが表示されるまでの時間
+const wallDelayStart = 2.6 * 100; //最初のパイプが表示されるまでの時間
 const wallWidth = 64; // 壁の幅
 const wallColor = "#3CC128"; // 壁の色
 const gapSizeDefault = 90 // 壁に空いた穴の大きさ
