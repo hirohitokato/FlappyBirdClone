@@ -7,4 +7,4 @@ This is a trivial clone of flappy bird, written in JS
 
 ## How to play
 
-Open index.html with your browser.
+Open index.html by your browser.
