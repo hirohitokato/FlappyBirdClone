@@ -9,6 +9,7 @@ const ctx = canvas.getContext("2d");
 // ゲームに使う情報の定義
 //
 
+let firstPlay = true;
 let isPlaying = false;
 
 //// 鳥(主人公)の情報
@@ -301,7 +302,11 @@ function drawScore() {
 
     drawText(`SCORE:${score}   HIGH SCORE:${highscore}`, "22pt Arial Black", canvas.width / 2, 50);
     if (!isPlaying) {
-        drawText("GAME OVER", "32px Arial Black", canvas.width / 2, canvas.height / 2 - 50);
+        if (firstPlay) {
+            drawText("Flappy Bird Clone", "32px Arial Black", canvas.width / 2, canvas.height / 2 - 50);
+        } else {
+            drawText("GAME OVER", "32px Arial Black", canvas.width / 2, canvas.height / 2 - 50);
+        }
         drawText("PRESS ANY KEY", "32px Arial Black", canvas.width / 2, canvas.height / 2)
     }
 }
