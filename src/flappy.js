@@ -300,7 +300,8 @@ function drawScore() {
         ctx.restore();
     };
 
-    drawText(`SCORE: ${score}   HIGH SCORE: ${highscore}`, "22pt Arial Black", canvas.width / 2, 50);
+    scoreText = ``;
+    drawText(scoreText, "22pt Arial Black", canvas.width / 2, 50);
     if (!isPlaying) {
         if (firstPlay) {
             firstPlay = false;
