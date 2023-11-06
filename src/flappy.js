@@ -300,7 +300,7 @@ function drawScore() {
         ctx.restore();
     };
 
-    scoreText = ``;
+    let scoreText = ``;
     drawText(scoreText, "22pt Arial Black", canvas.width / 2, 50);
     if (!isPlaying) {
         if (firstPlay) {
