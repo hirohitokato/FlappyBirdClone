@@ -52,7 +52,7 @@ document.addEventListener("click", onInputEvent, false);
 function onInputEvent(e) {
     if (isPlaying) {
         // 鳥に上向きの加速度を与える
-
+        moment = 4.0; // 鳥が上に羽ばたく力を与える
     }
     else {
         // ゲームオーバーまたはプレイ前なので鳥や壁の位置、
@@ -111,10 +111,10 @@ function moveWalls() {
     // 表示中の壁１つ１つを動かしスクロールしているように見せる
     walls.forEach(function (wall) {
         // 少し左に動かす
-
+        wall.x = wall.x - (tick / 9.0);
         if (!wall.scored && wall.x < bx) {
             // 壁を通過できたのでスコア＋１
-
+            score = score + 1;
             // 通過済みの壁はスコア計算の対象から外す
             wall.scored = true;
         }
@@ -134,7 +134,7 @@ function moveBirds() {
     // 鳥を現在の羽ばたきの効果を考慮しつつ自由落下させる
     // 空気抵抗を考慮して一定以上のスピードにはしない
     by -= moment;
-
+    moment = Math.max(-9, moment - (tick * 0.017)); // 重力の影響で下に落ちる
 }
 
 /**
@@ -153,7 +153,7 @@ function checkCollision() {
         const distanceToLowerWall = calculateDistance(bx, by, wall.x - wall.width, wall.gapStart + wall.gapSize, wall.width, canvas.height - (wall.gapStart + wall.gapSize));
         if (distanceToUpperWall < birdSize - 2
             || distanceToLowerWall < birdSize - 2) {
-
+                gameover(); // 衝突していたらゲームオーバー
         }
     });
 }
@@ -300,7 +300,7 @@ function drawScore() {
         ctx.restore();
     };
 
-    let scoreText = ``;
+    let scoreText = `SCORE: ${score}  HIGH SCORE: ${highscore}`;
     drawText(scoreText, "22pt Arial Black", canvas.width / 2, 50);
     if (!isPlaying) {
         if (firstPlay) {
